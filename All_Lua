@@ -18,13 +18,13 @@ if gameid[game.PlaceId] then
 end
 
 if script_use == "1" then
-	loadstring(game:HttpGet(""))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/PetSimulator99"))()
 elseif script_use == "2" then
-	loadstring(game:HttpGet(""))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/PetsGo"))()
 elseif script_use == "3" then
-	loadstring(game:HttpGet(""))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/MurderMystery%202"))()
 elseif script_use == "4" then
-    loadstring(game:HttpGet(""))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/BloxFruits"))()
 elseif script_use == "5" then
-    loadstring(game:HttpGet(""))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/PlsDonate"))()
 end
