@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(player)
-    if player.Name == "Ankazcx_lol" then
+    if player.Name == "ankazcz_alt" then
         wait(3)
         game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(".")
     end
