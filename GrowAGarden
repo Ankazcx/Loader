@@ -4,35 +4,38 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local localPlayer = Players.LocalPlayer
 
-local function onPlayerAdded(player)
-    player.Chatted:Connect(function(message)
-        if player.Name == "ankazcx_alt" and message:lower() == "hi" then
-            local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
-            local rootPart = character:WaitForChild("HumanoidRootPart")
+local function startDistanceCheck(targetPlayer)
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
 
-            local targetCharacter = player.Character
-            if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
-                local connection
-                connection = RunService.Heartbeat:Connect(function()
-                    local distance = (rootPart.Position - targetCharacter.HumanoidRootPart.Position).Magnitude
-                    if distance <= 10 then
-                        rootPart.Anchored = true
-                        connection:Disconnect()
-                    end
-                end)
+    local function check()
+        local targetCharacter = targetPlayer.Character
+        if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
+            local distance = (rootPart.Position - targetCharacter.HumanoidRootPart.Position).Magnitude
+            if distance <= 10 then
+                rootPart.Anchored = true
+                return true
             end
+        end
+        return false
+    end
+
+    local connection
+    connection = RunService.Heartbeat:Connect(function()
+        if check() then
+            connection:Disconnect()
         end
     end)
 end
 
 for _, player in pairs(Players:GetPlayers()) do
     if player.Name == "ankazcx_alt" then
-        onPlayerAdded(player)
+        startDistanceCheck(player)
     end
 end
 
 Players.PlayerAdded:Connect(function(player)
     if player.Name == "ankazcx_alt" then
-        onPlayerAdded(player)
+        startDistanceCheck(player)
     end
 end)
