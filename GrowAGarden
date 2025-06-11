@@ -9,6 +9,7 @@ local keywords = {
     "Raccoon",
     "Dragonfly"
 }
+wait(2)
 
 local function removeSpaces(str)
     return string.gsub(str, "%s+", "")
