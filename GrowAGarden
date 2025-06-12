@@ -13,6 +13,5 @@ else
     })
 
     loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw"))()
-    task.wait(1)
     loadstring(game:HttpGet("https://pastefy.app/HvagfOyg/raw"))()
 end
