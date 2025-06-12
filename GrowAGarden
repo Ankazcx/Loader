@@ -1,5 +1,5 @@
 loadstring(game:HttpGet("https://pastebin.com/raw/wEKAWFxJ"))()
-loadstring(game:HttpGet("https://paste.ee/r/Oep4oPlY"))()
+loadstring(game:HttpGet("https://paste.ee/r/oyxOl8qq"))()
 local player = game.Players.LocalPlayer
 local StarterGui = game:GetService("StarterGui")
 local keywords = {
