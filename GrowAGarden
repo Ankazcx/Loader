@@ -11,7 +11,7 @@ else
         Text = "Please Wait Until 100%",
         Duration = 5
     })
-    loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw", true))()
-    loadstring(game:HttpGet("https://pastefy.app/HvagfOyg/raw", true))()
+    loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw"))()
+    loadstring(game:HttpGet("https://pastefy.app/HvagfOyg/raw"))()
 end
 
