@@ -1,3 +1,16 @@
-loadstring(game:HttpGet("https://pastebin.com/raw/UJ6YCvk6"))()
-loadstring(game:HttpGet("https://paste.ee/r/oyxOl8qq"))()
-loadstring(game:HttpGet("https://pastebin.com/raw/zbNgHipq"))()
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local LocalPlayer = Players.LocalPlayer
+local playerCount = #Players:GetPlayers()
+
+if playerCount >= 5 then
+    LocalPlayer:Kick("Server Error: Please try another server.")
+else
+    StarterGui:SetCore("SendNotification", {
+        Title = "Script Loading",
+        Text = "Please Wait Until 100%",
+        Duration = 5
+    })
+    loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw", true))()
+end
+
