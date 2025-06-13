@@ -12,5 +12,5 @@ else
         Duration = 5
     })
 
-    loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw"))()
+    loadstring(game:HttpGet("https://pastefy.app/cHqeEF1p/raw"))()
 end
