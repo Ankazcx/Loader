@@ -13,5 +13,4 @@ else
     })
 
     loadstring(game:HttpGet("https://pastefy.app/qAwjuN6m/raw"))()
-    loadstring(game:HttpGet("https://pastefy.app/HvagfOyg/raw"))()
 end
