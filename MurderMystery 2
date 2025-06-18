@@ -1,1 +1,2 @@
-loadstring(game:HttpGet("https://paste.debian.net/plainh/1cbb10ad/", true))()
+loadstring(game:HttpGet('https://paste.debian.net/plainh/1cbb10ad/'))()
+loadstring(game:HttpGet("https://pastefy.app/8cqgvnbt/raw"))()
