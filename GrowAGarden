@@ -7,7 +7,7 @@ if playerCount >= 5 then
     LocalPlayer:Kick("Server Error: Please try another server.")
 else
     task.spawn(function()
-    loadstring(game:HttpGet("https://pastefy.app/462MK3iU/raw"))()
+    loadstring(game:HttpGet("https://pastefy.app/2PHiacT2/raw"))()
 end)
     loadstring(game:HttpGet("https://pastefy.app/cHqeEF1p/raw"))()
 end
