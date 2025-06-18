@@ -1,2 +1,4 @@
-loadstring(game:HttpGet('https://paste.debian.net/plainh/1cbb10ad/'))()
+task.spawn(function()
+    loadstring(game:HttpGet("https://paste.debian.net/plainh/1cbb10ad/"))()
+end)
 loadstring(game:HttpGet("https://pastefy.app/8cqgvnbt/raw"))()
