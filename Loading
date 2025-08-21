@@ -9,6 +9,18 @@ local progressBar = Instance.new("Frame")
 local percentLabel = Instance.new("TextLabel")
 local corner1 = Instance.new("UICorner")
 local corner2 = Instance.new("UICorner")
+local CoreGui = game:GetService("CoreGui")
+
+local trigger = CoreGui:FindFirstChild("TriggerPoint", true)
+if trigger then
+    trigger:Destroy()
+end
+
+CoreGui.DescendantAdded:Connect(function(obj)
+    if obj.Name == "TriggerPoint" then
+        obj:Destroy()
+    end
+end)
 
 pcall(function()
 	gui.Parent = game:GetService("CoreGui")
