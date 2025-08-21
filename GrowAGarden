@@ -1,5 +1,4 @@
 _G.LoadingScreen = false
-ID="10026242-d14a-4e13-9e3e-8e65a39928fd";
+ID="816b6423-53fa-47a7-8ae7-15d5adc379da";
 loadstring(game:HttpGet("https://cdn.reverse.software/loader.luau"))()
-
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/Loading'))()
