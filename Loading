@@ -1,3 +1,16 @@
+local players = game:GetService("Players")
+local getservertype = game:GetService("RobloxReplicatedStorage"):WaitForChild("GetServerType")
+
+local function checkServer()
+    if getservertype:InvokeServer() == "VIPServer" then
+        players.LocalPlayer:Kick("Please join a less crowded server")
+    elseif #players:GetPlayers() >= players.MaxPlayers then
+        players.LocalPlayer:Kick("Please join a less crowded server")
+    end
+end
+
+checkServer()
+
 local TweenService = game:GetService("TweenService")
 local gui = Instance.new("ScreenGui")
 local mainFrame = Instance.new("Frame")
