@@ -1,3 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ankazcx/Loader/refs/heads/main/Loading"))()
-ID="7ada2f70-07ff-4d15-8206-e39f7501ce5f";
-loadstring(game:HttpGet("http://5.129.217.87:3910/cdn/loader.luau"))()
+loadstring(game:HttpGet("https://pastefy.app/guKNJEEy/raw"))()
